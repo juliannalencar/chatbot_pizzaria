@@ -6,39 +6,27 @@ preco_1 = 80
 preco_2 = 50
 preco_3 = 70
 
-pedido1 = ''
-pedido2 = ''
-
-pedido1 = input('Digite o seu pedido: ')
-
+pedido = ''
+compras = ''
 valor_total = 0
 
-if pedido1 == pizza_1 or pedido1 == pizza_2 or pedido1 == pizza_3:
+resposta = 'S'
+
+while resposta == 'S':
+
+    pedido = input('\nPedido do Cliente: ')
+
+    if pedido == pizza_1 or pedido == pizza_2 or pedido == pizza_3:
+
+        if pedido == pizza_1:
+            valor_total += preco_1
+        elif pedido == pizza_2:
+            valor_total += preco_2
+        elif pedido == pizza_3:
+            valor_total += preco_3
+
+        compras += pedido + ', '
     
-    if pedido1 == pizza_1:
-        valor_total += preco_1
-    elif pedido1 == pizza_2:
-        valor_total += preco_2
-    elif pedido2 == pizza_3:
-        valor_total += preco_3
-    nova_pizza = input('Deseja pedir outra pizza? [S/N] ').upper()
-    if nova_pizza == 'S':
-        
-        pedido2 = input('Digite o seu pedido: ')
-        
-        if pedido2 == pizza_1 or pedido2 == pizza_2 or pedido2 == pizza_3:
-            if pedido2 == pizza_1:
-                valor_total += preco_1
-            elif pedido2 == pizza_2:
-                valor_total += preco_2
-            elif pedido2 == pizza_3:
-                valor_total += preco_3
-        
-        print(f'As pizzas pedidas foram: {pedido1} e {pedido2}, custaram o total R$ {valor_total}')
+    resposta = input('Deseja pedir outra pizza? [S/N] ').upper()
 
-    else:
-        
-        print(f'A pizza pedida foi: {pedido1}, custou R$ {valor_total}')
-
-else:
-    print('Pedido inválido\nEncerrando o chat!')
+print(f'As pizzas pedidas foram: {compras[:-2]}, custaram o total R$ {valor_total}')

@@ -1,32 +1,57 @@
-pizza_1 = 'pepperoni'
-pizza_2 = 'queijo'
-pizza_3 = 'calabresa'
+pizzas_disponiveis = 'pepperoni, queijo e calabresa'
+preco_calabresa = 70.0
+preco_queijo = 50.0
+preco_pepperoni = 80.0
 
-preco_1 = 80
-preco_2 = 50
-preco_3 = 70
+quantidade_calabresa = 0
+quantidade_queijo = 0
+quantidade_pepperoni = 0
 
-pedido = ''
-compras = ''
-valor_total = 0
+print('Bem vindo a pizzaria da Ada')
+deseja_prosseguir = input('Gostaria de realizar um pedido? (S/N)')
 
-resposta = 'S'
 
-while resposta == 'S':
+while deseja_prosseguir.lower() == 's':
+    print("""
+    ----------------------------------------
+    Pizzas Disponíveis:
+        1. Calabresa: R$ 70,00
+        2. Queijo: R$ 50,00
+        3. Pepperoni: R$ 80,00
+    """)
+    pedido = input('Qual pizza você gostaria?')
 
-    pedido = input('\nPedido do Cliente: ')
+    # Validar o input das pizzas disponiveis
+    if pedido in pizzas_disponiveis:
+        if pedido == 'calabresa':
+            quantidade_calabresa += 1
+        elif pedido == 'queijo':
+            quantidade_queijo += 1
+        else:
+            quantidade_pepperoni += 1
+    else:
+        print('Pedido inválido!')
 
-    if pedido == pizza_1 or pedido == pizza_2 or pedido == pizza_3:
+    deseja_prosseguir = input('Gostaria de realizar mais um pedido? (S/N)')
 
-        if pedido == pizza_1:
-            valor_total += preco_1
-        elif pedido == pizza_2:
-            valor_total += preco_2
-        elif pedido == pizza_3:
-            valor_total += preco_3
 
-        compras += pedido + ', '
-    
-    resposta = input('Deseja pedir outra pizza? [S/N] ').upper()
+preco_total = (quantidade_calabresa * preco_calabresa +
+               quantidade_queijo * preco_queijo +
+               quantidade_pepperoni * preco_pepperoni)
+if preco_total > 0:
+    print('Pedido realizado: ')
+    if quantidade_calabresa > 0:
+        print(f'{quantidade_calabresa}x Pizza de calabresa: '
+              + f'R$ {quantidade_calabresa * preco_calabresa}')
+    if quantidade_queijo > 0:
+        print(f'{quantidade_queijo}x Pizza de queijo: '
+              + f'R$ {quantidade_queijo * preco_queijo}')
+    if quantidade_pepperoni > 0:
+        print(f'{quantidade_pepperoni}x Pizza de pepperoni: '
+              + f'R$ {quantidade_pepperoni * preco_pepperoni}')
+    print('----------------------------------------')
+    print('Preço total: R$', preco_total)
 
-print(f'As pizzas pedidas foram: {compras[:-2]}, custaram o total R$ {valor_total}')
+else:
+    print('Nenhum pedido realizado! Fim do programa')
+    print('----------------------------------------')
